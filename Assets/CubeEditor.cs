@@ -4,9 +4,17 @@ using System.Drawing;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class EditorSnap : MonoBehaviour
+[SelectionBase]
+public class CubeEditor : MonoBehaviour
 {
     [SerializeField] float size = 10f;
+
+    TextMesh textMesh;
+
+    void Start()
+    {
+        textMesh = GetComponentInChildren<TextMesh>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -16,5 +24,7 @@ public class EditorSnap : MonoBehaviour
         snapPos.z = Mathf.RoundToInt(transform.position.z / size) * size;
 
         transform.position = new Vector3(snapPos.x, 0f, snapPos.z);
+
+        textMesh.text = snapPos.x / size + "," + snapPos.z / size;
     }
 }
