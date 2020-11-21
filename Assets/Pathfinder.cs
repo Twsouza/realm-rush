@@ -6,6 +6,7 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour
 {
     [SerializeField] Waypoint startWaypoint, endWaypoint;
+    Queue<Waypoint> queue = new Queue<Waypoint>();
 
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
     Vector2Int[] directions =
@@ -21,17 +22,43 @@ public class Pathfinder : MonoBehaviour
     {
         LoadBlocks();
         ColorStartAndEnd();
-        ExploreNeighbours();
+        Pathfind();
     }
 
-    private void ExploreNeighbours()
+    private void Pathfind()
+    {
+        queue.Enqueue(startWaypoint);
+
+        while(queue.Count > 0)
+        {
+            var searchCenter = queue.Dequeue();
+
+            if (searchCenter == endWaypoint)
+            {
+                print("End Waypoint found!");
+                break;
+            }
+
+            ExploreNeighbours(searchCenter);
+        }
+    }
+
+    private void ExploreNeighbours(Waypoint from)
     {
         foreach (Vector2Int direction in directions)
         {
-            Vector2Int exploreCoord = startWaypoint.GetGridPos() + direction;
+            Vector2Int exploreCoord = from.GetGridPos() + direction;
             try
             {
-                grid[exploreCoord].SetTopColor(Color.magenta);
+                Waypoint neighbour = grid[exploreCoord];
+                neighbour.SetTopColor(Color.magenta); // todo move later
+
+                if (!neighbour.isExplored)
+                {
+                    queue.Enqueue(neighbour);
+                    neighbour.isExplored = true;
+                    print(neighbour + " queued");
+                }
             }
             catch
             {
