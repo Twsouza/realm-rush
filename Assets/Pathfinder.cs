@@ -28,6 +28,7 @@ public class Pathfinder : MonoBehaviour
     private void Pathfind()
     {
         queue.Enqueue(startWaypoint);
+        startWaypoint.isExplored = true;
 
         while(queue.Count > 0)
         {
@@ -51,13 +52,12 @@ public class Pathfinder : MonoBehaviour
             try
             {
                 Waypoint neighbour = grid[exploreCoord];
-                neighbour.SetTopColor(Color.magenta); // todo move later
 
                 if (!neighbour.isExplored)
                 {
-                    queue.Enqueue(neighbour);
                     neighbour.isExplored = true;
-                    print(neighbour + " queued");
+                    neighbour.exporedFrom = from;
+                    queue.Enqueue(neighbour);
                 }
             }
             catch
