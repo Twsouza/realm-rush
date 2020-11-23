@@ -16,16 +16,33 @@ public class Pathfinder : MonoBehaviour
         Vector2Int.down,
         Vector2Int.left
     };
+    List<Waypoint> path = new List<Waypoint>();
 
-    // Start is called before the first frame update
-    void Start()
+    public List<Waypoint> GetPath()
     {
         LoadBlocks();
         ColorStartAndEnd();
-        Pathfind();
+        BreadthFirstSearch();
+        CreatePath();
+        return path;
     }
 
-    private void Pathfind()
+    private void CreatePath()
+    {
+        path.Add(endWaypoint);
+        Waypoint previous = endWaypoint.exporedFrom;
+        while (previous != startWaypoint)
+        {
+            path.Add(previous);
+            previous = previous.exporedFrom;
+        }
+
+        path.Add(startWaypoint);
+
+        path.Reverse();
+    }
+
+    private void BreadthFirstSearch()
     {
         queue.Enqueue(startWaypoint);
         startWaypoint.isExplored = true;
@@ -49,7 +66,7 @@ public class Pathfinder : MonoBehaviour
         foreach (Vector2Int direction in directions)
         {
             Vector2Int exploreCoord = from.GetGridPos() + direction;
-            try
+            if (grid.ContainsKey(exploreCoord))
             {
                 Waypoint neighbour = grid[exploreCoord];
 
@@ -59,10 +76,6 @@ public class Pathfinder : MonoBehaviour
                     neighbour.exporedFrom = from;
                     queue.Enqueue(neighbour);
                 }
-            }
-            catch
-            {
-
             }
         }
     }
