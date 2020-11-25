@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Range(0.1f, 120f)]
     [SerializeField] float secondsBetweenSpawns = 5f;
     [SerializeField] EnemyMovement enemyToSpawn;
     [SerializeField] int maxEnemies = 5;
@@ -19,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
         print("Max enemies: " + maxEnemies);
         while (FindObjectsOfType<EnemyMovement>().Length < maxEnemies)
         {
-            Object.Instantiate(enemyToSpawn);
+            Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }
     }
