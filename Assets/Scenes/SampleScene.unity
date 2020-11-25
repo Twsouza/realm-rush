@@ -3785,15 +3785,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 103311443}
     m_Modifications:
-    - target: {fileID: 1395207330, guid: b64b06c62037bb84090df4a0fcb2e9d7, type: 3}
-      propertyPath: hitPoints
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 89320016267183657, guid: b64b06c62037bb84090df4a0fcb2e9d7,
-        type: 3}
-      propertyPath: movementSpeed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1750928501668542192, guid: b64b06c62037bb84090df4a0fcb2e9d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3848,11 +3839,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2649796103708319851, guid: b64b06c62037bb84090df4a0fcb2e9d7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6752952914402434642, guid: b64b06c62037bb84090df4a0fcb2e9d7,
         type: 3}

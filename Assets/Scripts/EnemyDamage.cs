@@ -25,7 +25,6 @@ public class EnemyDamage : MonoBehaviour
     void ProcessHit()
     {
         hitPoints--;
-        print("Current HP: " + hitPoints);
     }
 
     private void KillEnemy()
