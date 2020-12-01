@@ -31,17 +31,23 @@ public class Pathfinder : MonoBehaviour
 
     private void CreatePath()
     {
-        path.Add(endWaypoint);
+        SetAsPath(endWaypoint);
+
         Waypoint previous = endWaypoint.exporedFrom;
         while (previous != startWaypoint)
         {
-            path.Add(previous);
+            SetAsPath(previous);
             previous = previous.exporedFrom;
         }
 
-        path.Add(startWaypoint);
-
+        SetAsPath(startWaypoint);
         path.Reverse();
+    }
+
+    private void SetAsPath(Waypoint waypoint)
+    {
+        path.Add(waypoint);
+        waypoint.isPlaceable = false;
     }
 
     private void BreadthFirstSearch()
@@ -98,7 +104,6 @@ public class Pathfinder : MonoBehaviour
                 grid.Add(waypoint.GetGridPos(), waypoint);
             }
         }
-        print(grid.Count);
     }
 
 }
