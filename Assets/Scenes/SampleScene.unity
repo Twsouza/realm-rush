@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsBetweenSpawns: 5
-  enemyToSpawn: {fileID: 89320016267183657, guid: b64b06c62037bb84090df4a0fcb2e9d7,
+  enemyToSpawn: {fileID: 114941686308246830, guid: 04f81ff9814844ccfa08226f8d46a3f4,
     type: 3}
   maxEnemies: 5
 --- !u!1001 &112794877
