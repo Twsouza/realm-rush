@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] float movementSpeed = 2f;
-    // Start is called before the first frame update
+    [SerializeField] float movementPeriod = .5f;
+    [SerializeField] ParticleSystem goalParticle;
+
     void Start()
     {
         Pathfinder pathfinder = FindObjectOfType<Pathfinder>();
@@ -16,12 +17,21 @@ public class EnemyMovement : MonoBehaviour
 
     IEnumerator FollowPath(List<Waypoint> path)
     {
-        print("Starting patrol...");
         foreach (Waypoint waypoint in path)
         {
             transform.position = waypoint.transform.position;
-            yield return new WaitForSeconds(movementSpeed);
+            yield return new WaitForSeconds(movementPeriod);
         }
-        print("Ending patrol...");
+
+        SelfDestruct();
+    }
+
+    private void SelfDestruct()
+    {
+        var vfx = Instantiate(goalParticle, transform.position, Quaternion.identity);
+        vfx.Play();
+        Destroy(vfx.gameObject, vfx.main.duration);
+
+        Destroy(gameObject);
     }
 }

@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
-        while (FindObjectsOfType<EnemyMovement>().Length < maxEnemies)
+        while (true)
         {
             var enemy = Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
             enemy.transform.parent = enemyParentTransform;
