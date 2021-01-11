@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float secondsBetweenSpawns = 5f;
     [SerializeField] EnemyMovement enemyToSpawn;
     [SerializeField] int maxEnemies = 5;
+    [SerializeField] Transform enemyParentTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -17,10 +18,10 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
-        print("Max enemies: " + maxEnemies);
         while (FindObjectsOfType<EnemyMovement>().Length < maxEnemies)
         {
-            Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
+            var enemy = Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
+            enemy.transform.parent = enemyParentTransform;
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }
     }
