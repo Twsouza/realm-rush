@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int maxEnemies = 5;
     [SerializeField] Transform enemyParentTransform;
     [SerializeField] Text spawnedEnemies;
+    [SerializeField] AudioClip spawnEnemySFX;
 
     int score;
 
@@ -26,6 +27,8 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             AddScore();
+
+            GetComponent<AudioSource>().PlayOneShot(spawnEnemySFX);
 
             var enemy = Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
             enemy.transform.parent = enemyParentTransform;

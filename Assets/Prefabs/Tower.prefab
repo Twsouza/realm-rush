@@ -48,6 +48,7 @@ MonoBehaviour:
   objectToPan: {fileID: 6239837768491718100}
   attackRange: 30
   projectileParticle: {fileID: 6239395485659881666}
+  baseWaypoint: {fileID: 0}
 --- !u!1001 &6239395483904041404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,7 +309,7 @@ PrefabInstance:
     - target: {fileID: 2585289298802940883, guid: b4fdb09264e20414384e3a688f7284d5,
         type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 300
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 2585289298802940883, guid: b4fdb09264e20414384e3a688f7284d5,
         type: 3}
